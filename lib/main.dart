@@ -23,12 +23,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => TodoBloc()..add(FetchTodos()),
-      child: const MaterialApp(
+      child:  MaterialApp(
         debugShowCheckedModeBanner: false,
+        
         title: 'Flutter Demo',
-      
-        home:    MyHomePage(title: 'todos'),
+      theme: ThemeData(indicatorColor: Colors.black),
+        home:    const MyHomePage(title: 'Note App'),
       ),
+      
     );
   }
 }

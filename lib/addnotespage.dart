@@ -21,45 +21,55 @@ class _AddNotesPageState extends State<AddNotesPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          TextFormField(
-            decoration: const InputDecoration(hintText: "todo"),
-            onChanged: (val) {
-              name = val;
-            },
-          ),
-          TextFormField(
-            maxLines: 2,
-            decoration: const InputDecoration(hintText: "description"),
-            onChanged: (val) {
-              description = val;
-            },
-          ),
-          BlocBuilder<TodoBloc, TodoState>(
-            builder: (context, state) {
-              if (state is TaskInProgress) {
-                return const CircularProgressIndicator();
-              } else {
-                return ElevatedButton(
-                  onPressed: () async {
-                    String id = const Uuid().v4();
-                    Todo todo = Todo(name, id, description);
-                    if (mounted) {
-                      context.read<TodoBloc>().add(AddTodo(todo));
-                      Navigator.of(context).pop();
-                    }
-                  },
-                  child: const TodoText(
-                    text: "Save",
-                    color: Colors.black,
-                  ),
-                );
-              }
-            },
-          ),
-        ],
+      backgroundColor: Color.fromARGB(255, 119, 154, 191),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            TextFormField(
+              maxLines: 2,
+              decoration: const InputDecoration(hintText: "Title"),
+              onChanged: (val) {
+                name = val;
+              },
+            ),
+            TextFormField(
+              maxLines: 20,
+              decoration: const InputDecoration(hintText: "Description"),
+              onChanged: (val) {
+                description = val;
+              },
+            ),
+            BlocBuilder<TodoBloc, TodoState>(
+              builder: (context, state) {
+                if (state is TaskInProgress) {
+                  return const CircularProgressIndicator();
+                } else {
+                  return ElevatedButton(
+                    style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(Colors.black)
+                    ),
+                    
+                    onPressed: () async {
+                      String id = const Uuid().v4();
+                      Todo todo = Todo(name, id, description);
+                      if (mounted) {
+                        context.read<TodoBloc>().add(AddTodo(todo));
+                        Navigator.of(context).pop();
+                      }
+                    },
+                    child: const TodoText(
+                      text: "Save",
+                      color: Colors.white,
+                    ),
+                  );
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

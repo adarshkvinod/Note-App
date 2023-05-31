@@ -21,8 +21,9 @@ class _MyHomePageState extends State<MyHomePage> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Color.fromARGB(255, 119, 154, 191),
       appBar: AppBar(
+        backgroundColor: Colors.black,
         centerTitle: true,
         title: TodoText(
           text: widget.title,
@@ -30,7 +31,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(4.0),
+        padding: const EdgeInsets.all(15.0),
         child: SizedBox(
           height: height,
           width: width,
@@ -58,6 +59,7 @@ class _MyHomePageState extends State<MyHomePage> {
                                     )));
                       },
                       child: ListTile(
+                        titleTextStyle: const TextStyle(color: Colors.black,fontWeight: FontWeight.w900),
                         title: Text(state.data[index].name),
                         subtitle: Text(state.data[index].description),
                       ),
@@ -74,11 +76,12 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+        hoverElevation: 20,
+        backgroundColor: Colors.black,
         elevation: 25,
         child: const Icon(
           Icons.add,
-          color: Colors.black,
+          color: Colors.white,
           size: 30,
         ),
         onPressed: () async {
