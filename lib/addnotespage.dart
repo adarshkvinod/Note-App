@@ -36,7 +36,7 @@ class _AddNotesPageState extends State<AddNotesPage> {
               },
             ),
             TextFormField(
-              maxLines: 20,
+              maxLines: 2,
               decoration: const InputDecoration(hintText: "Description"),
               onChanged: (val) {
                 description = val;
